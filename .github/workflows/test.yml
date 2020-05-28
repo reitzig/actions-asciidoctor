@@ -37,10 +37,7 @@ jobs:
       - name: Test without options
         run: |
             asciidoctor --version
-            echo 'NOTE: This is a test. kbd:[Ctrl+C]?' \
-              > test.adoc
-            asciidoctor test.adoc
-            grep -vcq '<kbd>' test.html
+            ruby test/run_tests.rb without_options
 
       - name: Set up asciidoctor with options
         uses: ./
@@ -51,7 +48,4 @@ jobs:
       - name: Test with options
         run: |
           asciidoctor --version
-          echo 'NOTE: This is a test. kbd:[Ctrl+C]?' \
-            > test_exp.adoc
-          asciidoctor test_exp.adoc
-          grep -cq '<kbd>' test_exp.html
+          ruby test/run_tests.rb with_experimental

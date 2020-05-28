@@ -2,6 +2,7 @@ const core = require('@actions/core');
 const exec = require('@actions/exec');
 const fs  = require('fs');
 const io = require('@actions/io');
+const os = require('os')
 const path = require('path')
 
 function gemfile(version) {
@@ -12,14 +13,26 @@ function gemfile(version) {
     `
 }
 
-function wrapperScript(binary, options) {
-    return `
-        #!/usr/bin/env bash
+function wrapperScriptName(dir) {
+    if ( os.platform() === 'win32') {
+        return path.join(dir, 'asciidoctor.bat')
+    } else {
+        return path.join(dir, 'asciidoctor')
+    }
+}
 
-        ${binary} \\
-            ${options} \\
-            "\$@"
-    `
+function wrapperScript(binary, options) {
+    if ( os.platform() === 'win32') {
+        return `
+            ruby ${binary} ${options} %*
+        `
+    } else {
+        return `
+            #!/usr/bin/env bash
+
+            ruby ${binary} ${options} "\$@"
+        `
+    }
 }
 
 async function run() {
@@ -56,13 +69,14 @@ async function run() {
         asciidoctorBinary = path.join(bundlePath.trim(), 'bin', 'asciidoctor')
         core.debug(`True binary at ${asciidoctorBinary}`)
 
-        asciidoctorWrapper = path.join(workdir, 'asciidoctor')
+        asciidoctorWrapper = wrapperScriptName(workdir)
         await fs.promises.writeFile(
             asciidoctorWrapper,
             wrapperScript(asciidoctorBinary, asciidoctorOptions)
         )
         await fs.promises.chmod(asciidoctorWrapper, 0o755)
         core.info(`Created ${asciidoctorWrapper}`)
+        core.debug(wrapperScript(asciidoctorBinary, asciidoctorOptions))
         core.addPath(path.resolve(workdir))
 
         await exec.exec('asciidoctor', ['--version'])

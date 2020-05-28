@@ -1590,6 +1590,7 @@ const core = __webpack_require__(245);
 const exec = __webpack_require__(444);
 const fs  = __webpack_require__(747);
 const io = __webpack_require__(1);
+const os = __webpack_require__(87)
 const path = __webpack_require__(622)
 
 function gemfile(version) {
@@ -1600,14 +1601,26 @@ function gemfile(version) {
     `
 }
 
-function wrapperScript(binary, options) {
-    return `
-        #!/usr/bin/env bash
+function wrapperScriptName(dir) {
+    if ( os.platform() === 'win32') {
+        return path.join(dir, 'asciidoctor.bat')
+    } else {
+        return path.join(dir, 'asciidoctor')
+    }
+}
 
-        ${binary} \\
-            ${options} \\
-            "\$@"
-    `
+function wrapperScript(binary, options) {
+    if ( os.platform() === 'win32') {
+        return `
+            ruby ${binary} ${options} %*
+        `
+    } else {
+        return `
+            #!/usr/bin/env bash
+
+            ruby ${binary} ${options} "\$@"
+        `
+    }
 }
 
 async function run() {
@@ -1644,13 +1657,14 @@ async function run() {
         asciidoctorBinary = path.join(bundlePath.trim(), 'bin', 'asciidoctor')
         core.debug(`True binary at ${asciidoctorBinary}`)
 
-        asciidoctorWrapper = path.join(workdir, 'asciidoctor')
+        asciidoctorWrapper = wrapperScriptName(workdir)
         await fs.promises.writeFile(
             asciidoctorWrapper,
             wrapperScript(asciidoctorBinary, asciidoctorOptions)
         )
         await fs.promises.chmod(asciidoctorWrapper, 0o755)
         core.info(`Created ${asciidoctorWrapper}`)
+        core.debug(wrapperScript(asciidoctorBinary, asciidoctorOptions))
         core.addPath(path.resolve(workdir))
 
         await exec.exec('asciidoctor', ['--version'])
