@@ -7,5 +7,7 @@ set -eu
 exec < /dev/tty
 
 ./\$ npm install
+git add package-lock.json
+
 ./\$ ncc build index.js
 git add dist/index.js

@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "actions-asciidoctor",
   "version": "1.0.0",
   "description": "GitHub Actions for Asciidoctor",
   "main": "index.js",
@@ -10,7 +10,12 @@
     "type": "git",
     "url": "git+https://github.com/reitzig/actions-asciidoctor.git"
   },
-  "keywords": [],
+  "keywords": [
+    "github-actions",
+    "asciidoc",
+    "asciidoctor",
+    "setup"
+  ],
   "author": "reitzig",
   "license": "MIT",
   "bugs": {
@@ -20,6 +25,6 @@
   "dependencies": {
     "@actions/core": "^1.2.4",
     "@actions/exec": "^1.0.4",
-    "@actions/github": "^2.2.0"
+    "@actions/io": "^1.0.2"
   }
 }
