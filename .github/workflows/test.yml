@@ -23,10 +23,8 @@ jobs:
         - 'macos-latest'
         - 'windows-latest'
     steps:
-      # Build the action
+      # Check out; action built on dev machine to `dist/index.js`!
       - uses: actions/checkout@v2
-
-      - run: npm install
 
       # Run it like we would in the wild:
       - uses: ruby/setup-ruby@v1

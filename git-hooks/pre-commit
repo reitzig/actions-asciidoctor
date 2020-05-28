@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# Build the action, cause otherwise I'll certainly forget.
+
+set -eu
+
+exec < /dev/tty
+
+./\$ npm install
+./\$ ncc build index.js
+git add dist/index.js
