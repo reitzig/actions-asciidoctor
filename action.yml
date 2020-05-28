@@ -1,0 +1,21 @@
+name: 'Asciidoctor Setup'
+description: 'Set up asciidoctor quickly and set default options.'
+inputs:
+  version:
+    description: |
+        The version of asciidoctor to install. 
+        Example: 2.0.10
+    required: false
+    default: '~>2.0'
+  options:
+    description: |
+        Any options every run of asciidoctor should use.
+        Example: "-a experimental=true -d inline"
+    required: false
+    default: ''
+runs:
+  using: 'node12'
+  main: 'index.js'
+branding:
+  icon: 'package'
+  color: 'yellow'

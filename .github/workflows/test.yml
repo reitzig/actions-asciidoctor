@@ -1,0 +1,41 @@
+name: 'Test'
+
+on:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    types:
+      - opened
+      - synchronize
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+        - 'ubuntu-18.04'
+        - 'macos-latest'
+        - 'windows-latest'
+    steps:
+      # Build the action
+      - uses: actions/checkout@v2
+
+      - run: npm install
+
+      # Run it like we would in the wild:
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7
+
+      - uses: ./
+        with:
+          version: 2.0.10
+          options: "-a experimental=true"
+
+      - run: asciidoctor --version

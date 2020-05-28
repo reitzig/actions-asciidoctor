@@ -1,0 +1,25 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "GitHub Actions for Asciidoctor",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reitzig/actions-asciidoctor.git"
+  },
+  "keywords": [],
+  "author": "reitzig",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/reitzig/actions-asciidoctor/issues"
+  },
+  "homepage": "https://github.com/reitzig/actions-asciidoctor#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.4",
+    "@actions/exec": "^1.0.4",
+    "@actions/github": "^2.2.0"
+  }
+}
