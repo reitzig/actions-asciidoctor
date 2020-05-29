@@ -46,7 +46,7 @@ jobs:
         with:
           ruby-version: 2.7
 
-      - uses: reitzig/actions-asciidoctor@v1
+      - uses: reitzig/actions-asciidoctor@v1.0.0
         with:
           version: 2.0.10
           options: "-a experimental=true"
