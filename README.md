@@ -1,3 +1,8 @@
+[![license](https://img.shields.io/github/license/reitzig/actions-asciidoctor.svg)](https://github.com/reitzig/actions-asciidoctor/blob/master/LICENSE)
+[![release](https://img.shields.io/github/release/reitzig/actions-asciidoctor.svg)](https://github.com/reitzig/actions-asciidoctor/releases/latest)
+[![GitHub release date](https://img.shields.io/github/release-date/reitzig/actions-asciidoctor.svg)](https://github.com/reitzig/actions-asciidoctor/releases)
+![Test](https://github.com/reitzig/actions-asciidoctor/workflows/Test/badge.svg?branch=master&event=push)
+
 # Asciidoctor Setup Action
 
 This Action can install
