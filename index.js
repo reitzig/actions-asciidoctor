@@ -75,6 +75,7 @@ async function run() {
             wrapperScript(asciidoctorBinary, asciidoctorOptions)
         )
         await fs.promises.chmod(asciidoctorWrapper, 0o755)
+        await exec.exec('env')
         core.info(`Created ${asciidoctorWrapper}`)
         core.debug(wrapperScript(asciidoctorBinary, asciidoctorOptions))
         core.addPath(path.resolve(workdir))
