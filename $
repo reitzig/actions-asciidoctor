@@ -24,11 +24,10 @@ if ! container_exists "${container_name}"; then
         tail -f /dev/null # block
     echo "Container ${container_name} started -- don't forget to stop it later!"
 
-    # Project-specific setup:
     docker exec -it \
         -w /usr/src/app \
         "${container_name}" \
-        npm install -g @zeit/ncc
+        npm run prepare
 fi
 
 docker exec -it \
