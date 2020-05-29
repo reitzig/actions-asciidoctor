@@ -1,5 +1,6 @@
 name: 'Asciidoctor Setup'
-description: 'Set up asciidoctor quickly and set default options.'
+description: 'Install and set up asciidoctor quickly.'
+author: 'reitzig'
 inputs:
   version:
     description: |
