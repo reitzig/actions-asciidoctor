@@ -13,25 +13,23 @@ function gemfile(version) {
     `
 }
 
-function wrapperScriptName(dir) {
-    if ( os.platform() === 'win32') {
-        return path.join(dir, 'asciidoctor.bat')
-    } else {
-        return path.join(dir, 'asciidoctor')
-    }
-}
-
 function wrapperScript(executable, options) {
     if ( os.platform() === 'win32') {
-        return `
-            ruby ${executable} ${options} %*
-        `
+        return {
+            name: 'asciidoctor.bat',
+            content: `
+                ruby ${executable} ${options} %*
+            `
+        }
     } else {
-        return `
-            #!/bin/bash
+        return {
+            name: 'asciidoctor',
+            content: `
+                #!/bin/bash
 
-            ruby "${executable}" ${options} "\$@"
-        `
+                ruby "${executable}" ${options} "\$@"
+            `
+        }
     }
 }
 
@@ -69,15 +67,16 @@ async function run() {
         const asciidoctorExecutable = path.join(bundlePath.trim(), 'bin', 'asciidoctor')
         core.debug(`True asciidoctor at ${asciidoctorExecutable}`)
 
-        const asciidoctorWrapper = wrapperScriptName(workdir)
+        const asciidoctorWrapper = wrapperScript(asciidoctorExecutable, asciidoctorOptions)
+        asciidoctorWrapper.path = path.join(workdir, asciidoctorWrapper.name)
         await fs.promises.writeFile(
-            asciidoctorWrapper,
-            wrapperScript(asciidoctorExecutable, asciidoctorOptions)
+            asciidoctorWrapper.path,
+            asciidoctorWrapper.content
         )
-        await fs.promises.chmod(asciidoctorWrapper, 0o755)
+        await fs.promises.chmod(asciidoctorWrapper.path, 0o755)
         await exec.exec('env')
-        core.info(`Created ${asciidoctorWrapper}`)
-        core.debug(wrapperScript(asciidoctorExecutable, asciidoctorOptions))
+        core.info(`Created ${asciidoctorWrapper.path}`)
+        core.debug(asciidoctorWrapper.content)
         core.addPath(path.resolve(workdir))
 
         await exec.exec('asciidoctor', ['--version'])
