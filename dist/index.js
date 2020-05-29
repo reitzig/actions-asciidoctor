@@ -1607,7 +1607,7 @@ function wrapperScript(executable, options) {
             name: 'asciidoctor.bat',
             content: `
                 ruby ${executable} ${options} %*
-            `
+            `.trim()
         }
     } else {
         return {
@@ -1616,7 +1616,7 @@ function wrapperScript(executable, options) {
                 #!/bin/bash
 
                 ruby "${executable}" ${options} "\$@"
-            `
+            `.trim()
         }
     }
 }
