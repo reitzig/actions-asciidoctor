@@ -15,7 +15,7 @@ to a virtual machine of GitHub Actions.
 Given that Ruby has already been installed, include this in your workflow:
 
 ```yml
- - uses: reitzig/actions-asciidoctor@v1
+ - uses: reitzig/actions-asciidoctor@v1.0.0
 ```
 
 These inputs are allowed:
@@ -57,7 +57,7 @@ jobs:
 
 ## Credits
 
- - @peaceiris lent inspiration, 
+ - [@peaceiris](https://github.com/peaceiris) lent inspiration, 
    [example](https://github.com/peaceiris/actions-hugo), and 
    [pointers](https://github.com/reitzig/today-i-learned/pull/1/).
  - A bunch of Stackoverflow answers helped cobble this together.
