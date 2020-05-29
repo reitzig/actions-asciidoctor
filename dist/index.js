@@ -1609,16 +1609,16 @@ function wrapperScriptName(dir) {
     }
 }
 
-function wrapperScript(binary, options) {
+function wrapperScript(executable, options) {
     if ( os.platform() === 'win32') {
         return `
-            ruby ${binary} ${options} %*
+            ruby ${executable} ${options} %*
         `
     } else {
         return `
             #!/bin/bash
 
-            ruby ${binary} ${options} "\$@"
+            ruby "${executable}" ${options} "\$@"
         `
     }
 }
@@ -1629,10 +1629,10 @@ async function run() {
         const asciidoctorOptions = core.getInput('options');
 
         core.startGroup('Install asciidoctor')
-        workdir = 'actions_asciidoctor'
+        const workdir = 'actions_asciidoctor'
         await io.mkdirP(workdir)
 
-        gemfilePath = path.join(workdir, 'Gemfile')
+        const gemfilePath = path.join(workdir, 'Gemfile')
         await fs.promises.writeFile(
             gemfilePath,
             gemfile(asciidoctorVersion)
@@ -1654,18 +1654,18 @@ async function run() {
             }
         }
         await exec.exec('bundle', ['info', '--path', 'asciidoctor'], options)
-        asciidoctorBinary = path.join(bundlePath.trim(), 'bin', 'asciidoctor')
-        core.debug(`True binary at ${asciidoctorBinary}`)
+        const asciidoctorExecutable = path.join(bundlePath.trim(), 'bin', 'asciidoctor')
+        core.debug(`True asciidoctor at ${asciidoctorExecutable}`)
 
-        asciidoctorWrapper = wrapperScriptName(workdir)
+        const asciidoctorWrapper = wrapperScriptName(workdir)
         await fs.promises.writeFile(
             asciidoctorWrapper,
-            wrapperScript(asciidoctorBinary, asciidoctorOptions)
+            wrapperScript(asciidoctorExecutable, asciidoctorOptions)
         )
         await fs.promises.chmod(asciidoctorWrapper, 0o755)
         await exec.exec('env')
         core.info(`Created ${asciidoctorWrapper}`)
-        core.debug(wrapperScript(asciidoctorBinary, asciidoctorOptions))
+        core.debug(wrapperScript(asciidoctorExecutable, asciidoctorOptions))
         core.addPath(path.resolve(workdir))
 
         await exec.exec('asciidoctor', ['--version'])
