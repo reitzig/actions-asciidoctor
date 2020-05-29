@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # No, I don't want Node on my machine -- this is my workaround.
-# Yes, I'm scared of Javascript and everything it touches. 
+# Yes, I'm scared of Javascript and everything it touches.
 # I only use it here because GitHub forces me to.
 # There you have it. Let's move on.
 
@@ -23,6 +23,11 @@ if ! container_exists "${container_name}"; then
         node:12-slim \
         tail -f /dev/null # block
     echo "Container ${container_name} started -- don't forget to stop it later!"
+
+    docker exec -it \
+        -w /usr/src/app \
+        "${container_name}" \
+        npm run prepare
 fi
 
 docker exec -it \

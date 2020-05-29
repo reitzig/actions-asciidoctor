@@ -10,6 +10,7 @@ on:
     types:
       - opened
       - synchronize
+      - reopened
     paths-ignore:
       - '**.md'
 
@@ -35,9 +36,7 @@ jobs:
         uses: ./
 
       - name: Test without options
-        run: |
-            asciidoctor --version
-            ruby test/run_tests.rb without_options
+        run: ruby test/run_tests.rb without_options
 
       - name: Set up asciidoctor with options
         uses: ./
@@ -46,6 +45,4 @@ jobs:
           options: "-a experimental=true"
 
       - name: Test with options
-        run: |
-          asciidoctor --version
-          ruby test/run_tests.rb with_experimental
+        run: ruby test/run_tests.rb with_experimental

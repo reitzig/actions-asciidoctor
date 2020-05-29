@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "GitHub Actions for Asciidoctor",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/reitzig/actions-asciidoctor.git"
@@ -26,5 +23,8 @@
     "@actions/core": "^1.2.4",
     "@actions/exec": "^1.0.4",
     "@actions/io": "^1.0.2"
+  },
+  "scripts": {
+    "prepare": "npm i -g @zeit/ncc"
   }
 }
