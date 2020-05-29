@@ -1616,7 +1616,7 @@ function wrapperScript(binary, options) {
         `
     } else {
         return `
-            #!/usr/bin/env bash
+            #!/bin/bash
 
             ruby ${binary} ${options} "\$@"
         `
