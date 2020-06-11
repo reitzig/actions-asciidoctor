@@ -55,9 +55,14 @@ jobs:
 ```
 
 
-## Credits
+## Acknowledgements
 
  - [@peaceiris](https://github.com/peaceiris) lent inspiration, 
    [example](https://github.com/peaceiris/actions-hugo), and 
    [pointers](https://github.com/reitzig/today-i-learned/pull/1/).
  - A bunch of Stackoverflow answers helped cobble this together.
+ - Parts of this project were created during 
+     [20% time](https://en.wikipedia.org/wiki/20%25_Project) 
+   graciously provided by 
+     [codecentric](https://codecentric.de).
+   Thank you!
