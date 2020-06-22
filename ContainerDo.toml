@@ -1,0 +1,13 @@
+# For https://github.com/reitzig/container-do
+
+[container]
+image = "node:12-slim"
+os_flavor = "debian"
+
+work_dir = "/usr/src/app"
+
+[run.setup]
+attach      = true
+commands    = [
+    "npm i -g @zeit/ncc"
+]
