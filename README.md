@@ -12,7 +12,9 @@ to a virtual machine of GitHub Actions.
 
 ## Usage
 
-Include this in your workflow:
+Given that Ruby has already been installed 
+(e.g. by [ruby/setup-ruby](https://github.com/marketplace/actions/setup-ruby-jruby-and-truffleruby)), 
+include this in your workflow:
 
 ```yml
  - uses: reitzig/actions-asciidoctor@v2.0.0
@@ -43,7 +45,7 @@ jobs:
         with:
           ruby-version: 2.7
 
-      - uses: reitzig/actions-asciidoctor@v1.0.0
+      - uses: reitzig/actions-asciidoctor@v2.0.0
         with:
           version: 2.0.10
 
