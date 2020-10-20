@@ -1,17 +1,17 @@
 require 'open3'
 require 'minitest'
 
-stdout, stderr, status = Open3.capture3("asciidoctor -o - #{__dir__}/test.adoc")
-unless status.success?
-    STDERR.puts(stderr)
-    exit 1
-end
+options_and_check = {
+    "":                     ->(result) { /<h1>/ =~ result && /<kbd>/ !~ result },
+    "-a experimental=true": ->(result) { /<h1>/ =~ result && /<kbd>/ =~ result },
+}
 
-case ARGV[0]
-when "without_options"
-    fail unless /<kbd>/ !~ stdout
-when "with_experimental"
-    fail unless /<kbd>/ =~ stdout
-else
-    raise 'no such test'
+options_and_check.each do |options,check|
+    stdout, stderr, status = Open3.capture3("asciidoctor #{options} -o - #{__dir__}/test.adoc")
+    unless status.success?
+        STDERR.puts(stderr)
+        exit 1
+    end
+
+    fail unless check.call(stdout)
 end

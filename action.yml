@@ -8,12 +8,6 @@ inputs:
         Example: 2.0.10
     required: false
     default: '~>2.0'
-  options:
-    description: |
-        Any options every run of asciidoctor should use.
-        Example: "-a experimental=true -d inline"
-    required: false
-    default: ''
 runs:
   using: 'node12'
   main: 'dist/index.js'

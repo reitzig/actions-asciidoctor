@@ -1,6 +1,6 @@
 {
   "name": "actions-asciidoctor",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "GitHub Actions for Asciidoctor",
   "main": "index.js",
   "repository": {
@@ -25,6 +25,6 @@
     "@actions/io": "^1.0.2"
   },
   "scripts": {
-    "prepare": "npm i -g @zeit/ncc"
+    "prepare": "npm i -g @vercel/ncc"
   }
 }

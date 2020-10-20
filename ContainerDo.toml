@@ -9,5 +9,5 @@ work_dir = "/usr/src/app"
 [run.setup]
 attach      = true
 commands    = [
-    "npm i -g @zeit/ncc"
+    "npm i -g @vercel/ncc"
 ]
