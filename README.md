@@ -39,7 +39,7 @@ jobs:
   example:
     runs-on: ubuntu-18.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - uses: ruby/setup-ruby@v1
         with:
@@ -47,7 +47,7 @@ jobs:
 
       - uses: reitzig/actions-asciidoctor@v2.0.0
         with:
-          version: 2.0.10
+          version: 2.0.18
 
       - run: asciidoctor --version
 ```

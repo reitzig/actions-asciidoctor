@@ -638,7 +638,7 @@ class ToolRunner extends events.EventEmitter {
         // command line parser.
         //
         // for a detailed description of the cmd.exe command line parser, refer to
-        // http://stackoverflow.com/questions/4094699/how-does-the-windows-command-interpreter-cmd-exe-parse-scripts/7970912#7970912
+        // https://stackoverflow.com/questions/4094699/how-does-the-windows-command-interpreter-cmd-exe-parse-scripts/7970912#7970912
         // need quotes for empty arg
         if (!arg) {
             return '""';
