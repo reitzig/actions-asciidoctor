@@ -9,6 +9,16 @@ this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 No additional changes yet.
 
+
+## [2.0.1] - 2023-04-11
+
+### Chore
+
+* Dependency bumps (kudos @deining)
+* Publish as Node 16 action (issue #9)
+* Tests run with current stuff
+
+
 ## [2.0.0] - 2020-10-21
 
 ### Removed
@@ -25,12 +35,14 @@ No additional changes yet.
 
  - Install gem to the system's default location.
 
+
 ## [1.1.0] - 2020-10-03
 
 ### Security
 
  - Bump dependency `@actions/core` 
    [[#5](https://github.com/reitzig/actions-asciidoctor/pull/5)]
+
 
 ## [1.0.0] - 2020-05-29
 
