@@ -9,7 +9,7 @@ inputs:
     required: false
     default: '~>2.0'
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'dist/index.js'
 branding:
   icon: 'package'
