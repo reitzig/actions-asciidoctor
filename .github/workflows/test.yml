@@ -25,7 +25,7 @@ jobs:
         - 'windows-latest'
     steps:
       # Check out; action built on dev machine to `dist/index.js`!
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       # Run it like we would in the wild:
       - uses: ruby/setup-ruby@v1
