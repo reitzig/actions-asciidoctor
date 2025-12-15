@@ -21,7 +21,7 @@
   "homepage": "https://github.com/reitzig/actions-asciidoctor#readme",
   "dependencies": {
     "@actions/core": "^1.11.1",
-    "@actions/exec": "^1.1.1",
+    "@actions/exec": "^2.0.0",
     "@actions/io": "^2.0.0"
   },
   "scripts": {
