@@ -43,11 +43,11 @@ jobs:
 
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.7
+          ruby-version: 4.0
 
       - uses: reitzig/actions-asciidoctor@v2.0.3
         with:
-          version: 2.0.18
+          version: 2.0.26
 
       - run: asciidoctor --version
 ```
