@@ -11,8 +11,6 @@ on:
       - opened
       - synchronize
       - reopened
-    paths-ignore:
-      - '**.md'
 
 jobs:
   test:
@@ -23,6 +21,9 @@ jobs:
         - 'ubuntu-latest'
         - 'macos-latest'
         - 'windows-latest'
+        ruby-version:
+        - '3.4'
+        - '4.0'
     steps:
       # Check out; action built on dev machine to `dist/index.js`!
       - uses: actions/checkout@v6
@@ -30,7 +31,7 @@ jobs:
       # Run it like we would in the wild:
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.7
+          ruby-version: ${{ matrix.ruby-version }}
 
       - name: Set up asciidoctor
         uses: ./
