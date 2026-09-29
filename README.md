@@ -17,7 +17,7 @@ Given that Ruby has already been installed
 include this in your workflow:
 
 ```yml
- - uses: reitzig/actions-asciidoctor@v2.0.5
+ - uses: reitzig/actions-asciidoctor@v2.0.6
 ```
 
 These inputs are allowed:
@@ -45,7 +45,7 @@ jobs:
         with:
           ruby-version: 4.0
 
-      - uses: reitzig/actions-asciidoctor@v2.0.5
+      - uses: reitzig/actions-asciidoctor@v2.0.6
         with:
           version: 2.0.26
 
